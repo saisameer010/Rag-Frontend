@@ -1,0 +1,206 @@
+@import url('https://fonts.googleapis.com/css?family=Dosis&display=swap');
+
+:root {
+  /* generic */
+  --gutterSm: 0.4rem;
+  --gutterMd: 0.8rem;
+  --gutterLg: 1.6rem;
+  --gutterXl: 2.4rem;
+  --gutterXx: 7.2rem;
+  --colorPrimary400: #7e57c2;
+  --colorPrimary600: #5e35b1;
+  --colorPrimary800: #4527a0;
+  --fontFamily: 'Dosis', sans-serif;
+  --fontSizeSm: 1.2rem;
+  --fontSizeMd: 1.6rem;
+  --fontSizeLg: 2.1rem;
+  --fontSizeXl: 2.8rem;
+  --fontSizeXx: 3.6rem;
+  --lineHeightSm: 1.1;
+  --lineHeightMd: 1.8;
+  --transitionDuration: 300ms;
+  --transitionTF: cubic-bezier(0.645, 0.045, 0.355, 1);
+  --backgroundColor: #6EE7B7; /* Updated background color */
+  --textColor: #073B4C;
+  --buttonHoverColor: #059669;
+  --inputBorderColor: #d1d5db;
+  --inputFocusBorderColor: #10b981;
+  --buttonBackgroundColor: #10b981;
+  --buttonTextColor: #ffffff;
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #020000;
+  font-family: var(--fontFamily);
+  color: var(--textColor);
+}
+
+.container {
+  max-width: 400px; /* Control the maximum width */
+  width: 120%; /* Use a percentage to maintain responsiveness */
+  margin: auto; /* This ensures the container is centered */
+  padding: var(--gutterLg);
+  text-align: center;
+  display: flex; /* Use flex to align children */
+  flex-direction: column; /* Stack children vertically */
+  align-items: center; /* Center-align the children horizontally */
+}
+
+.logo {
+  width: 120px;
+  height: 120px;
+  margin-bottom: var(--gutterMd);
+  border-radius: 50%;
+  animation: breatheLogo 3s ease-in-out infinite;
+}
+
+@keyframes breatheLogo {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.8;
+  }
+}
+
+
+
+#openAI-key {
+  margin-left: 15px;
+}
+
+#my-repo-name {
+  margin-left: 1px;
+}
+
+
+
+.title {
+  margin-bottom: var(--gutterMd);
+  font-size: var(--fontSizeLg);
+  color: var(--textColor);
+}
+
+.input {
+  width: 100%;
+  padding: var(--gutterSm) var(--gutterMd);
+  margin-bottom: var(--gutterMd);
+  border: 1px solid var(--inputBorderColor);
+  border-radius: var(--gutterSm);
+  font-size: var(--fontSizeMd);
+
+}
+
+
+.input:focus {
+  outline: none;
+  border-color: var(--inputFocusBorderColor);
+  box-shadow: 0 0 0 2px var(--colorPrimary600);
+  color:#020000
+}
+
+
+
+
+
+/* Existing styles... */
+
+/* New flex container styles */
+.flex-container {
+  display: flex;
+  align-items: center; /* Align items vertically in the center */
+  justify-content: space-between; /* Space between title and input */
+  margin-bottom: 1rem; /* Add some space between each row */
+  width: 120%;
+}
+
+.title{
+  flex: 1; /* Allow title and input to fill the available space */
+  margin: 0 0.5rem;
+  color: white;
+}
+
+.input {
+  flex: 1; /* Allow title and input to fill the available space */
+  margin: 0 0.5rem;/* Add some margin between title and input */
+}
+
+.title {
+  margin-right: 1rem; /* Additional right margin for the title */
+  white-space: nowrap; /* Prevent the title from wrapping */
+  font-size: 1rem; /* Adjust font size as necessary */
+}
+
+.input {
+  flex: 3;
+}
+
+
+
+/* Rest of the root and body styles remain the same */
+
+.button {
+  background: #4CAF50; /* Modern green background */
+  color: white;
+  font-family: var(--fontFamily);
+  font-size: 20px;
+  font-weight: 600;
+  height: 50px;
+  width: 200px;
+  line-height: 50px;
+  text-align: center;
+  position: relative;
+  margin: 20px auto;
+  cursor: pointer;
+  border-radius: 25px;
+  transition: background-color 0.3s, width 0.3s, height 0.3s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.button .text {
+  visibility: visible;
+  color:white;
+}
+
+.button.loading .text {
+  visibility: visible;
+}
+
+.button.loading::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.2);
+  animation: loadingAnimation 2s linear infinite;
+}
+
+@keyframes loadingAnimation {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.button.success {
+  background-color: #4CAF50; /* Success state green */
+}
+
+.button.success::after {
+  content: "✓"; /* Checkmark symbol */
+  font-size: 2em;
+  position: absolute;
+}
+
+
