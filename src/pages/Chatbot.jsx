@@ -53,7 +53,7 @@ const handleSubmit = async (e) => {
 
     try {
       // const response = await axios.post('/ask', { question: input });
-      const response = await fetch('http://localhost:5000/ask', {
+      const response = await fetch('https://rag-backend.onrender.com/ask', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

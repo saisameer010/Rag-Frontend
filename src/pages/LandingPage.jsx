@@ -35,7 +35,7 @@ const LandingPage = () => {
       console.log(requestBody)
   
       // Make the fetch call to the API
-      const response = await fetch('http://localhost:5000/fetch_commits', {
+      const response = await fetch('https://rag-backend.onrender.com/fetch_commits', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
