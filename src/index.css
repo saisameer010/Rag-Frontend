@@ -43,7 +43,10 @@ body, html {
   align-items: right;
 }
 
+
+
 .message {
+  white-space: pre-wrap;
   margin: 8px 0;
   padding: 8px;
   border-radius: 8px;
@@ -89,3 +92,4 @@ body, html {
 .chatbot-input-form button:hover {
   background-color: white;
   color: black;
+}

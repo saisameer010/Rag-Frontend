@@ -44,6 +44,7 @@ const Chatbot = () => {
 
 const handleSubmit = async (e) => {
     e.preventDefault();
+    setInput('');
     if (!input.trim()) return;
     const userMessage = { text: input, user: true };
     setMessages((prevMessages) => [...prevMessages, userMessage]);
@@ -51,15 +52,29 @@ const handleSubmit = async (e) => {
     setMessages((prevMessages) => [...prevMessages, aiMessage]);
 
     try {
-      const response = await axios.post('/ask', { question: input });
-      const newAiMessage = { text: response.data.answer, user: false };
+      // const response = await axios.post('/ask', { question: input });
+      const response = await fetch('http://localhost:5000/ask', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ question: input })
+      });
+      // console.log(response.body)
+      if (!response.ok) {
+        throw new Error('API response error. Status: ' + response.status);
+      }
+    
+      const responseData = await response.json(); // Convert response to JSON
+      console.log(responseData);
+      const newAiMessage = { text: responseData.answer, user: false };
       setMessages((prevMessages) => [...prevMessages.slice(0, -1), newAiMessage]);
     } catch (error) {
       console.error('Error communicating with the API:', error.message);
       // Handle error
     }
 
-    setInput('');
+    
   };
 
   return (

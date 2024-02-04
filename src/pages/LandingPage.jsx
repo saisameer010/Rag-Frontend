@@ -19,6 +19,7 @@ const LandingPage = () => {
     setButtonState('loading');
 
     try {
+      console.log("utton")
       // Call the function to send data to the API
       // await postDataToApi(openAIKey, githubUsername, githubRepoName);
 
@@ -26,7 +27,33 @@ const LandingPage = () => {
       // setButtonState('success');
       
       // Navigate to the '/chatbot' route after a delay of 5000 milliseconds (5 seconds)
-      setTimeout(() => navigate("/chatbot"), 5000);
+      const requestBody = {
+        username: githubUsername,
+        openai_key: openAIKey,
+        repo_name: githubRepoName
+      };
+      console.log(requestBody)
+  
+      // Make the fetch call to the API
+      const response = await fetch('http://localhost:5000/fetch_commits', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(requestBody)
+      });
+  
+      // Check if the response is successful
+      if (!response.ok) {
+        throw new Error('API call failed with status code ' + response.status);
+      }
+  
+      // Optional: Process the response data
+      // const responseData = await response.json();
+  
+      // After successful API call, set the button state to 'success'
+      setButtonState('success');
+      navigate("/chatbot");
     } catch (error) {
       // Handle any errors here
       console.error(error);
